@@ -20,13 +20,17 @@ namespace Tailwind.Traders.WebBff.Infrastructure
         {
             var req = _httpContextAccessor.HttpContext.Request;
 
-            if (req.Headers.ContainsKey("routing.visualstudio.io/route-from"))
+            ////if (req.Headers.ContainsKey("routing.visualstudio.io/route-from"))
+            ////{
+            ////    request.Headers.Add("routing.visualstudio.io/route-from", req.Headers["routing.visualstudio.io/route-from"] as IEnumerable<string>);
+            ////}
+            //if (req.Headers.ContainsKey("routing.visualstudio.io/route-on-header"))
+            //{
+            //    request.Headers.Add("routing.visualstudio.io/route-on-headerm", req.Headers["routing.visualstudio.io/route-on-header"] as IEnumerable<string>);
+            //}
+            if (req.Headers.ContainsKey("kubernetes-route-as"))
             {
-                request.Headers.Add("routing.visualstudio.io/route-from", req.Headers["routing.visualstudio.io/route-from"] as IEnumerable<string>);
-            }
-            if (req.Headers.ContainsKey("routing.visualstudio.io/route-on-header"))
-            {
-                request.Headers.Add("routing.visualstudio.io/route-on-headerm", req.Headers["routing.visualstudio.io/route-on-header"] as IEnumerable<string>);
+                request.Headers.Add("kubernetes-route-as", req.Headers["kubernetes-route-as"] as IEnumerable<string>);
             }
             return base.SendAsync(request, cancellationToken);
         }
